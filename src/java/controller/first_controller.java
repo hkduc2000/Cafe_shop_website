@@ -19,5 +19,5 @@ public class first_controller {
     @RequestMapping("/start")
     public String add(){
         return "result.jsp";
-    }   
+    }
 }
