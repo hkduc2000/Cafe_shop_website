@@ -14,7 +14,7 @@ create table Category(
 	CategoryName nvarchar(200)
 )
 
-insert into Category values(N'Cà phê')
+insert into Category values(N'Cà phê')	
 insert into Category values(N'Nước ép')
 insert into Category values(N'Trà sữa')
 insert into Category values(N'Trà')
@@ -30,10 +30,15 @@ create table Product(
 	CategoryID int references Category(CategoryID)
 )
 
+insert into Product values (N'Phin di sữa đá','ădaw', 1);
+
 create table Image(
 	ImagePath nvarchar(1000) primary key,
 	ProductID int references Product(ProductID),
 )
+
+insert into Image values('phindisuada2.jpg',1)
+insert into Image values('phindisuada1.jpg',1)
 
 create table Thumbnail (
 	ProductID int references Product(ProductID) primary key,

@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class first_controller {
     @RequestMapping("/start")
     public String add(){
-<<<<<<< Updated upstream
-        return "result.jsp";
-    }   
-=======
         return "redirect.jsp";
     }
->>>>>>> Stashed changes
 }
