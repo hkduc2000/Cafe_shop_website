@@ -23,7 +23,7 @@
 </head>
 <body>
     <img style="width: 100%;" 
-        src="https://images.foody.vn/brand/s1170x300/foody-upload-api-foody-331001_300862329944865_716502291_o-637305108-200716154043.jpg">
+        src="https://www.highlandscoffee.com.vn/vnt_upload/weblink/HCO-7644-FESTIVE-2021-SOCIAL-WEB-BANNER.jpg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="">Coffee Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
