@@ -25,3 +25,30 @@
 #descriptionArea img{
     max-width: 70vw;
 }
+
+.navbar{
+    background-color: #b22830;
+}
+
+.navbar a {
+    color: white;
+}
+
+body{
+    font-family: 'Noto Sans', sans-serif;
+    background-image: url("https://www.highlandscoffee.com.vn/skins/default/images/bgmenu.jpg");
+    background-repeat:  repeat;
+    
+}
+
+.container{
+   background: #f9edc2; 
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+    pointer-events: none;
+}

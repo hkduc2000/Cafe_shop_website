@@ -2,6 +2,7 @@
 use cafe_shop_db
 
 create table SizeTable(
+	Stt int identity(1,1),
 	Size nvarchar(5) primary key
 )
 
@@ -30,19 +31,9 @@ create table Product(
 	CategoryID int references Category(CategoryID)
 )
 
-insert into Product values (N'Phin di sữa đá','ădaw', 1);
-
 create table Image(
 	ImagePath nvarchar(1000) primary key,
 	ProductID int references Product(ProductID),
-)
-
-insert into Image values('phindisuada2.jpg',1)
-insert into Image values('phindisuada1.jpg',1)
-
-create table Thumbnail (
-	ProductID int references Product(ProductID) primary key,
-	ImagePath nvarchar(1000),
 )
 
 create table SizeOfProduct(
@@ -53,14 +44,15 @@ create table SizeOfProduct(
 	primary key (Size, ProductID)
 )
 
-create table Customer (
-	CustomerID int identity(1,1) primary key,
-	CustomerName nvarchar(200),
+create table [User] (
+	UserID int identity(1,1) primary key,
+	Name nvarchar(200),
 	Username nvarchar(100),
 	Password nvarchar(100),
 	Address nvarchar(200),
 	Phone varchar(50),
-	Mail varchar(100)
+	Mail varchar(100),
+	isAdmin bit
 )
 
 create table OrderStepTable (
@@ -76,7 +68,7 @@ insert into OrderStepTable values ('Đã hủy')
 
 create table [Order] (
 	OrderID int identity(1,1) primary key,
-	CustomerID int references Customer(CustomerID),
+	UserID int references [User](UserID),
 	StepID int references OrderStepTable(StepID),
 	CreatedDate date,
 	TotalPrice int
@@ -88,6 +80,10 @@ create table ProductInOrder(
 	Quantity int
 )
 
+
+--select * from Product
+--select * from [User]
+--drop table Image
 --use master
 --ALTER DATABASE [cafe_shop_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 --drop database cafe_shop_db

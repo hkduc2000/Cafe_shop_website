@@ -21,7 +21,7 @@ public class BaseDAO {
         try {
             String user = "sa";
             String pass = "20001998";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=jshop";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=cafe_shop_db";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {

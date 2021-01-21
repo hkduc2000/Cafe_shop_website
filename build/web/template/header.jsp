@@ -1,6 +1,7 @@
-
+<%@page import="DAL.ProductDAO"%>
+<%@page import="model.Category"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,38 +20,53 @@
     <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css"
           media="screen" charset="utf-8">
-    <link rel="stylesheet" href="static/css/main_style_sheet.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main_style_sheet.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <% ArrayList<Category> categories = new ProductDAO().getCategories();
+    request.setAttribute("categories", categories); %>
 </head>
 <body>
     <img style="width: 100%;" 
         src="https://www.highlandscoffee.com.vn/vnt_upload/weblink/HCO-7644-FESTIVE-2021-SOCIAL-WEB-BANNER.jpg">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="">Coffee Shop</a>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}">Coffee Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="drink_list.jsp">Đồ uống</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Thực đơn
+                    </a>
+                    <div class="dropdown-menu" style="background: #53382c;"> 
+                        
+                        <c:forEach items="${categories}" var="category">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/list/${category.categoryID}">
+                                ${category.categoryName}
+                            </a>
+                        </c:forEach>
+                    </div>
                 </li>
+                <c:if test="${(sessionScope.user != null) && (sessionScope.role == 'user')}">
                     <li class="nav-item">
-                        <a class="nav-link" href="order_list">Đồ ăn</a>
+                        <a class="nav-link" href="order_list">Đơn hàng của tôi</a>
                     </li>
-               
+                </c:if>
+                <c:if test="${(sessionScope.user != null) && (sessionScope.role == 'admin')}">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Quản lí
                         </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="add">Thêm món</a>
+                        <div class="dropdown-menu" style="background: #53382c;">
+                            <a class="dropdown-item" href="add">Thêm mặt hàng</a>
                             <a class="dropdown-item" href="order_manage">Đơn hàng</a>
                         </div>
                     </li>
-            
+                </c:if>
             </ul>
-
+            <c:if test="${sessionScope.role == 'user'}">
                 <a class="nav-item mr-3" href="cart" style="text-decoration: none;">
                     <i style="font-size:25px" >
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -59,27 +75,32 @@
                     </i>
                     <span id='lblCartCount' style="border-radius: 9px;">${cart.orderInfo.size()}</span>
                 </a>
-
-
-                    <button class="btn btn-primary mr-sm-2 my-2 my-lg-0" data-toggle="modal" data-target="#loginModal">
+            </c:if>
+            <c:choose>
+                <c:when test="${sessionScope.user == null}">
+                    <button class="btn btn-primary mr-sm-2 my-2 my-lg-0" data-toggle="modal" data-target="#loginModal"
+                            style="background: #6f2a0cba; border: none;">
                         Đăng nhập
                     </button>
-                    <button class="btn btn-primary mr-sm-5  my-2 my-lg-0" data-toggle="modal" data-target="#registerModal">
+                    <button class="btn btn-primary mr-sm-5  my-2 my-lg-0" data-toggle="modal" data-target="#registerModal"
+                            style="background: #6f2a0cba; border: none;">
                         Đăng kí
                     </button>
-
-                    <button class="nav-item btn btn-info mr-2" data-toggle="modal" data-target="#profileModal">
-                        Chào ${sessionScope.name}
+                </c:when>
+                <c:otherwise>
+                    <button class="nav-item btn btn-info mr-2" data-toggle="modal" data-target="#profileModal" style="background: #6f2a0cba; border: none;">
+                        Chào ${sessionScope.user.name}
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
                         <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
                         </svg>
                     </button>
-                    <a type="button" class="btn btn-secondary mr-2 ml-2" href="logout">
+                    <a type="button" class="btn btn-secondary mr-2 ml-2" href="${pageContext.request.contextPath}/logout">
                         Đăng xuất
                     </a>
-
+                </c:otherwise>
+            </c:choose>
         </div>
     </nav>
     <!-- Login -->
@@ -87,7 +108,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content p-4">
                 <h5 class="modal-title">Đăng nhập</h5> <br>
-                <form action="login" method="POST">
+                <form action="${pageContext.request.contextPath}/login" method="POST">
                     <div class="form-group">
                         <label >Tên đăng nhập:</label>
                         <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập">
@@ -181,5 +202,5 @@
         </div>
     </div>
 
-    <div class="container mt-2" style="min-height: 70vh;">
+    <div class="container pt-2" style="min-height: 70vh; padding-bottom: 300px;">
 
