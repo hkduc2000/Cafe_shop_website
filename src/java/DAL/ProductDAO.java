@@ -43,6 +43,19 @@ public class ProductDAO extends BaseDAO {
         return products;
     }
     
+    public void addProduct(Product product){
+        try {
+            String sql = "INSERT INTO Product VALUES(?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, product.getProductName());
+            statement.setString(2, product.getDescription());
+            statement.setInt(3, product.getCategoryID());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public ArrayList<Product> getProductsByCategoryID(int categoryID){
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -137,5 +150,30 @@ public class ProductDAO extends BaseDAO {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sizes;
+    }
+    
+    public int getIdentCur() {
+        try {
+            String sql = "SELECT IDENT_CURRENT('Product')";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            return rs.getInt("");
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public void addImg(String imgPath, int ProductID){
+        try {
+            String sql = "INSERT INTO Image VALUES(?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, imgPath);
+            statement.setInt(2, ProductID);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

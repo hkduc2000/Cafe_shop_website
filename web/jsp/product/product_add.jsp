@@ -4,14 +4,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%--<%@ include file = "template/header.jsp"%>--%>
 <jsp:include page="/template/header.jsp"></jsp:include>
-<form action="add" method="POST" enctype="multipart/form-data">
+<form action="${pageContext.request.servletContext}/products/add" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label>Tên sản phẩm</label>
-        <input type="text" name="ItemName" class="form-control" required>
+        <input type="text" name="ProductName" class="form-control" required>
     </div>
     <div class="form-group">
         <label >Danh mục sản phẩm</label>
-        <select class="form-control" name="CategoryNo">
+        <select class="form-control" name="CategoryID">
             <c:forEach items="${categories}" var="ctg">
                 <option value="${ctg.categoryID}">${ctg.categoryName}</option>
             </c:forEach>
@@ -25,11 +25,11 @@
     </div>
     <div class="form-group">
         <label>Hình đại diện</label>
-        <input type="file" name="ItemThubnail" accept="image/*" required>
+        <input type="file" name=ProductThubnail" accept="image/*" required>
     </div>
     <div class="form-group">
         <label>Hình ảnh sản phẩm</label>
-        <input type="file" name="ItemImage" accept="image/*" multiple required> 
+        <input type="file" name="ProductImages" accept="image/*" multiple required> 
     </div>
     <div class="form-group">
         <label>Giá sản phẩm:</label>
