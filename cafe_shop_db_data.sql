@@ -31,3 +31,5 @@ insert into Image values(N'PHIN SỮA ĐÁ.png',5)
 insert into Image values(N'PHIN SỮA NÓNG.png',6)
 insert into Image values(N'PHINDI HỒNG TRÀ.png',7)
 insert into Image values(N'PHINDI KEM SỮA.png',8)
+
+insert into [User] values ('admin', 'admin','123456', 'abc','abc','abc',1)
