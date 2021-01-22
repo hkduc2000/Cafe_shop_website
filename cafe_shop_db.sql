@@ -66,7 +66,7 @@ insert into OrderStepTable values ('Đã hủy')
 
 create table [Order] (
 	OrderID int identity(1,1) primary key,
-	UserID int references [User](UserID),
+	Username nvarchar(100) references [User](Username),
 	StepID int references OrderStepTable(StepID),
 	CreatedDate date,
 	TotalPrice int
