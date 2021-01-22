@@ -43,7 +43,7 @@
                     <div class="dropdown-menu" style="background: #53382c;"> 
                         
                         <c:forEach items="${categories}" var="category">
-                            <a class="dropdown-item" href="/${pageContext.request.contextPath}/products/list/${category.categoryID}">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/list/${category.categoryID}">
                                 ${category.categoryName}
                             </a>
                         </c:forEach>
@@ -132,7 +132,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content p-4">
                 <h5 class="modal-title">Đăng kí</h5> <br>
-                <form action="register" method="post">
+                <form action="${pageContext.request.contextPath}/register" method="post">
                     <div class="form-group">
                         <label>Email:</label>
                         <input type="email" class="form-control" name="email" placeholder="Nhập email" required>

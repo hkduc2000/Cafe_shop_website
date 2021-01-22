@@ -19,6 +19,12 @@ public class Product {
     private ArrayList<String> Images;
     private ArrayList<SizeOfProduct> Sizes;
 
+    public Product(String ProductName, String Description, int CategoryID) {
+        this.ProductName = ProductName;
+        this.Description = Description;
+        this.CategoryID = CategoryID;
+    }
+    
     public Product(int ProductID, String ProductName, String Description, int CategoryID, ArrayList<String> Images, ArrayList<SizeOfProduct> Sizes) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;

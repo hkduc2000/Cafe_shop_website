@@ -10,7 +10,6 @@ package model;
  * @author HKDUC
  */
 public class User {
-    private int UserID;
     private String Name;
     private String Username;
     private String Password;
@@ -29,18 +28,6 @@ public class User {
         this.Admin = isAdmin;
     }
 
-    
-    
-    public User(int UserID, String Name, String Username, String Password, String Address, String Phone, String Mail, boolean isAdmin) {
-        this.UserID = UserID;
-        this.Name = Name;
-        this.Username = Username;
-        this.Password = Password;
-        this.Address = Address;
-        this.Phone = Phone;
-        this.Mail = Mail;
-        this.Admin = isAdmin;
-    }
 
     public String getPhone() {
         return Phone;
@@ -49,19 +36,8 @@ public class User {
     public void setPhone(String Phone) {
         this.Phone = Phone;
     }
-
-        
-
-    
+  
     public User() {
-    }
-
-    public int getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
     }
 
     public String getName() {

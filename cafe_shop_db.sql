@@ -44,9 +44,8 @@ create table SizeOfProduct(
 )
 
 create table [User] (
-	UserID int identity(1,1) primary key,
 	Name nvarchar(200),
-	Username nvarchar(100),
+	Username nvarchar(100) primary key,
 	Password nvarchar(100),
 	Address nvarchar(200),
 	Phone varchar(50),
