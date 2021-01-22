@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -25,6 +26,13 @@ public class productProcess {
             @PathVariable int categoryid){
         ModelAndView mv = new ModelAndView("/jsp/product/product_list.jsp");
         mv.addObject("products", new ProductDAO().getProductsByCategoryID(categoryid));
+        return mv;
+    }
+    
+    @RequestMapping(value = "/add", method=GET)
+    public ModelAndView Add(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView mv = new ModelAndView("/jsp/product/product_add.jsp");
+        mv.addObject("sizes", new ProductDAO().getSizeList());
         return mv;
     }
 }

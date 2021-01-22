@@ -17,14 +17,26 @@ public class Product {
     private String Description;
     private int CategoryID;
     private ArrayList<String> Images;
+    private ArrayList<SizeOfProduct> Sizes;
 
-    public Product(int ProductID, String ProductName, String Description, int CategoryID, ArrayList<String> Images) {
+    public Product(int ProductID, String ProductName, String Description, int CategoryID, ArrayList<String> Images, ArrayList<SizeOfProduct> Sizes) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Description = Description;
         this.CategoryID = CategoryID;
         this.Images = Images;
+        this.Sizes = Sizes;
     }
+
+    public ArrayList<SizeOfProduct> getSizes() {
+        return Sizes;
+    }
+
+    public void setSizes(ArrayList<SizeOfProduct> Sizes) {
+        this.Sizes = Sizes;
+    }
+
+    
 
     public Product() {
     }

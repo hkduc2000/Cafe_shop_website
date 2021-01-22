@@ -43,7 +43,7 @@
                     <div class="dropdown-menu" style="background: #53382c;"> 
                         
                         <c:forEach items="${categories}" var="category">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/list/${category.categoryID}">
+                            <a class="dropdown-item" href="/${pageContext.request.contextPath}/products/list/${category.categoryID}">
                                 ${category.categoryName}
                             </a>
                         </c:forEach>
@@ -60,7 +60,9 @@
                             Quản lí
                         </a>
                         <div class="dropdown-menu" style="background: #53382c;">
-                            <a class="dropdown-item" href="add">Thêm mặt hàng</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/add">
+                                Thêm mặt hàng
+                            </a>
                             <a class="dropdown-item" href="order_manage">Đơn hàng</a>
                         </div>
                     </li>

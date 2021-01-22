@@ -5,7 +5,6 @@ create table SizeTable(
 	Stt int identity(1,1),
 	Size nvarchar(5) primary key
 )
-
 insert into SizeTable values('S');
 insert into SizeTable values('M');
 insert into SizeTable values('L');
