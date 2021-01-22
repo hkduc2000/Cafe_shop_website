@@ -5,9 +5,14 @@
  */
 package controller;
 
-import org.springframework.http.HttpRequest;
+import DAL.ProductDAO;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -16,8 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class first_controller {
-    @RequestMapping("/start")
-    public String add(){
-        return "result.jsp";
+    @RequestMapping("/list")
+    public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView mv = new ModelAndView("drink_list.jsp");
+        mv.addObject("products", new ProductDAO().getAll());
+        return mv;
     }
+    
+    @RequestMapping("/")
+    public ModelAndView homepage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        cookieProcess.welcomeLoginUser(request, response);
+        ModelAndView mv = new ModelAndView("jsp/homepage.jsp");
+        return mv;
+    }
+    
 }

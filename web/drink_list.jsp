@@ -7,9 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "template/header.jsp"%>
-
 <ul class="nav nav-tabs" role="tablist">
-    
     <li class="nav-item">
         <a onclick="switchTab(1);" class="nav-link active" data-toggle="tab" href="#ctg1">
             Cà phê
@@ -51,7 +49,20 @@
 
     <div id="ctg1" class="container tab-pane fade active show"><br>
         <div class="row">
-            <div class="col-6  col-lg-3 mt-1 item pagingitem" style="text-align: center;">
+            <c:forEach items="${products}" var="product">
+                <div class="col-6 col-md-4 col-lg-3 mt-1 item pagingitem" style="text-align: center;">
+                    <a href="item_detail?itemid=8" style="text-decoration: none;">
+                        <img src="static/img/${product.images[0]}" width="100%">
+                        <p class="truncate itemname pl-3 mb-0" style="color:black;">${product.productName}</p>
+                        <b class="truncate pl-2" style="color:black;">
+                            <span class="addsep">5699000</span>đ
+                            -<span class="d-block d-sm-inline"><span class="addsep">6690000</span>đ</span>
+                        </b>
+                    </a>
+                </div>
+            </c:forEach>
+            
+            <div class="col-6 col-lg-3 mt-1 item pagingitem" style="text-align: center;">
                 <a href="item_detail?itemid=8" style="text-decoration: none;">
                     <img src ="https://www.highlandscoffee.com.vn/vnt_upload/product/03_2018/PHIN-SUA-DA.png" width="100%">
                     <p class="truncate itemname pl-3 mb-0" style="color:black;">Phin sữa đá</p>

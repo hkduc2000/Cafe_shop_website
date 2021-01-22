@@ -1,0 +1,26 @@
+SMAP
+drink_005flist_jsp.java
+JSP
+*S JSP
+*F
++ 0 drink_list.jsp
+drink_list.jsp
++ 1 header.jsp
+template/header.jsp
++ 2 footer.jsp
+template/footer.jsp
+*L
+5,5:60
+1#1,56:64
+57:120,3
+58,11:123
+69:134,3
+70,114:137
+9#0,44:250
+52:396,11
+53,2:407
+55,2:409,3
+57,7:415
+63,74:296
+1#2,9:369
+*E
