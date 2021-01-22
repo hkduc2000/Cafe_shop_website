@@ -30,14 +30,13 @@ public class UserDAO extends BaseDAO {
             if(rs.next())
             {
                 User user = new User();
-                user.setUserID(rs.getInt(1));
-                user.setName(rs.getString(2));
+                user.setName(rs.getString(1));
                 user.setUsername(username);
                 user.setPassword(password);
-                user.setAddress(rs.getString(5));
-                user.setPhone(rs.getString(6));
-                user.setMail(rs.getString(7));
-                user.setAdmin(rs.getBoolean(8));
+                user.setAddress(rs.getString(4));
+                user.setPhone(rs.getString(5));
+                user.setMail(rs.getString(6));
+                user.setAdmin(rs.getBoolean(7));
                 return user;
             }
         } catch (SQLException ex) {
